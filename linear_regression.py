@@ -2,10 +2,9 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split 
 import matplotlib.pyplot as plt 
+import seaborn as sns
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import numpy as np 
-import pandas as pd 
 
 
 # importing dataset
@@ -29,7 +28,7 @@ pred = model.predict(xtest)
 
 # visualizing the training test results 
 plt.scatter(xtrain, ytrain, color= 'gray')
-plt.plot(xtrain, regressor.predict(xtrain), color = 'blue')
+plt.plot(xtrain, model.predict(xtrain), color = 'blue')
 plt.title ("Training Data")
 plt.xlabel("Space")
 plt.ylabel("Price")
@@ -37,14 +36,14 @@ plt.show()
 
 # visualizing the test results 
 plt.scatter(xtest, ytest, color= 'green')
-plt.plot(xtrain, regressor.predict(xtrain), color = 'red')
+plt.plot(xtrain, model.predict(xtrain), color = 'red')
 plt.title("Testing Data")
 plt.xlabel("Space")
 plt.ylabel("Price")
 plt.show()
 
 
---
+
 # correlation feature heatmap
 plt.figure(figsize=(12, 7))
 sns.heatmap(dataset.corr(), annot=True, cmap="YlGnBu")

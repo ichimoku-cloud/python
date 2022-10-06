@@ -23,7 +23,7 @@ df_train = df.loc[df.index <= split_date].copy()
 df_test = df.loc[df.index > split_date].copy()
 
 # visualising training and testing data
-        plot1 = df_test \
+plot1 = df_test \
             .rename(columns={'Monthly Sales': 'Test Set'}) \
             .join(df_train.rename(columns={'Monthly Sales': 'Training Set'}), how='outer') \
             .plot(figsize=(15,5), title='Monthly Sales', style='.')
@@ -66,27 +66,27 @@ model.fit(X_train, y_train,
        verbose=False) # Change verbose to True if you want to see it train
 
 
+# feature importance bar plot (visual)
+plot2 = plot_importance(model, height=0.9)
+
+# monthly sales vs. model prediction (visual)
+df_test['Monthly_Prediction'] = model.predict(X_test)
+df_all = pd.concat([df_test, df_train], sort=False)
+plot3 = df_all[['Monthly Sales','Monthly_Prediction']].plot(figsize=(15, 5))
 
 # setting index to make it easier to plot
 df_all.set_index(['Monthly Sales', 'Monthly_Prediction'])
 
-        # feature importance bar plot (visual)
-        plot2 = plot_importance(model, height=0.9)
 
-        # monthly sales vs. model prediction (visual)
-        df_test['Monthly_Prediction'] = model.predict(X_test)
-        df_all = pd.concat([df_test, df_train], sort=False)
-        plot3 = df_all[['Monthly Sales','Monthly_Prediction']].plot(figsize=(15, 5))
-
-        # plot the forecast with the actuals (visual)
-        f, ax = plt.subplots(1)
-        f.set_figheight(5)
-        f.set_figwidth(15)
-        _ = df_all[['Monthly_Prediction','Monthly Sales']].plot(ax=ax,
+# plot the forecast with the actuals (visual)
+f, ax = plt.subplots(1)
+f.set_figheight(5)
+f.set_figwidth(15)
+plot4 = df_all[['Monthly_Prediction','Monthly Sales']].plot(ax=ax,
                                                     style=['-','-'])
-        ax.set_xbound(lower='01-01-2011', upper='02-01-2012')
-        ax.set_ylim(0, 711000)
-        plot4 = plt.suptitle('January 2011 Forecast vs Actuals')
+ax.set_xbound(lower='01-01-2011', upper='02-01-2012')
+ax.set_ylim(0, 711000)
+plot4 = plt.suptitle('January 2011 Forecast vs Actuals')
 
 
 

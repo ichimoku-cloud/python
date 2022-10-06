@@ -32,50 +32,49 @@ def create_model(learning_rate, dropout_rate):
     model.add(Dense(25, activation='relu'))
     model.add(Dropout(dropout_rate))
     model.add(Dense(1))
-                    
-                            # alternative nn design (#1)
-                                            models.add(Dense(10, activation = 'relu', input_dim = input_size))
-                                            models.add(Dense(5, activation = 'sigmoid'))
-                                            models.add(Dropout(0.2))
-                                            # Adding the third hidden layer
-                                            models.add(Dense(5, activation = 'relu'))
-                                            models.add(Dropout(0.2))
-
-                                            models.add(Dense(5, activation = 'relu'))
-                                            models.add(Dense(5, activation = 'relu'))
-                                            # Adding the output layer
-                                            models.add(Dense(1))
-                                            models.compile(optimizer = tf.keras.optimizers.SGD(learning_rate=0.02), loss = 'mean_squared_error')
-
-                            # alternative nn design (#2)
-                                            model.add(Dense(500, input_dim=46, kernel_initializer='uniform', activation='relu'))
-                                            model.add(Dropout(0.5))
-                                            #Hidden layer 1
-                                            model.add(Dense(200, kernel_initializer='uniform', activation='relu'))
-                                            model.add(Dropout(0.5))
-                                            #Output layer
-                                            model.add(Dense(1, kernel_initializer='uniform', activation='sigmoid'))
 
 # optimizer
     adam = Adam(learning_rate)
-     # optimizers: SGD - gradient descent with momentum
-     #             Adamax - variant of Adam optimiser - at times superior to adam
+            # optimizers: SGD - gradient descent with momentum
+            # Adamax - variant of Adam optimiser - at times superior to adam
 # compile model
     model.compile(loss='mean_squared_error', optimizer=adam, metrics=['mae'])
                 # 'binary_crossentropy' -- for classification (probablistic loss)
                 # 'mean_squared_error' -- for regression (regression loss)
     return model 
     
-    # Initialize the model
-    model = create_model(learning_rate, dropout_rate)
+# Initialize the model
+model = create_model(learning_rate, dropout_rate)
 
 # Create model from training data
 model_history = model.fit(X_train, Y_train, batch_size=1, epochs=epochs, validation_split=0.2, verbose=10)
+                    
+    # alternative nn design (#1)
+    # models.add(Dense(10, activation = 'relu', input_dim = input_size))
+    # models.add(Dense(5, activation = 'sigmoid'))
+    # models.add(Dropout(0.2))
+    # Adding the third hidden layer
+    # models.add(Dense(5, activation = 'relu'))
+    # models.add(Dropout(0.2))
+
+    # models.add(Dense(5, activation = 'relu'))
+    # models.add(Dense(5, activation = 'relu'))
+    # Adding the output layer
+    # models.add(Dense(1))
+    # models.compile(optimizer = tf.keras.optimizers.SGD(learning_rate=0.02), loss = 'mean_squared_error')
+
+    # alternative nn design (#2)
+    # model.add(Dense(500, input_dim=46, kernel_initializer='uniform', activation='relu'))
+    # model.add(Dropout(0.5))
+    #Hidden layer 1
+    # model.add(Dense(200, kernel_initializer='uniform', activation='relu'))
+    # model.add(Dropout(0.5))
+    # Output layer
+    # model.add(Dense(1, kernel_initializer='uniform', activation='sigmoid'))
 
 
 
 
---
 # Prophet (Time Series Predictions)
 from prophet import Prophet
 from prophet.plot import plot_plotly, plot_components_plotly
@@ -93,29 +92,28 @@ model = Prophet()
 model_history = model.fit(x.reset_index() \
                            .rename(columns={'Date': 'ds',
                                             'IAP': 'y'}))
-                 # Renaming columns as Prophet model specifies ds & y columns
+# Renaming columns as Prophet model specifies ds & y columns
 
 # create future forecast ie. 15 days into the future
 future = model.make_future_dataframe(periods=15)
 forecast = model.predict(future)
 forecast[['ds', 'yhat']]
 
-        # plot prophet model
-        plot = model.plot(forecast, figsize=(15, 5))
-        plt.ylabel('IAP Revenue')
-        plt.xlabel('Date')
+# plot prophet model
+plot = model.plot(forecast, figsize=(15, 5))
+plt.ylabel('IAP Revenue')
+plt.xlabel('Date')
 
-        # plot weekly trends
-        plot2 = model.plot_components(forecast, figsize=(15, 5))
-        plt.title('IAP Revenue Forecast')
+# plot weekly trends
+plot2 = model.plot_components(forecast, figsize=(15, 5))
+plt.title('IAP Revenue Forecast')
 
-        # Interactive plot
-        plot_plotly(model, forecast)
-
-
+# Interactive plot
+plot_plotly(model, forecast)
 
 
---
+
+
 # random forest regression model
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
@@ -148,8 +146,6 @@ print('Accuracy:', round(accuracy, 2), '%.')
 
 
 
-
---
 # Machine Learning (Ensemble)
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split, cross_val_score, KFold
