@@ -1,0 +1,16 @@
+# Plots the scripts write
+outputs/
+
+# Your own data stays local unless you mean to share it
+data/
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
