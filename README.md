@@ -15,7 +15,7 @@ the numbers, and the key plots are saved to `outputs/`.
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python 01_linear_regression.py
+python linear_regression.py
 ```
 
 Every script runs with no arguments on a dataset bundled with scikit-learn
@@ -24,18 +24,18 @@ so nothing needs downloading. Add `--show` to open plot windows as well.
 
 ## What's here
 
-Work through them in order if you're learning; jump straight to one if you
+Work through them top to bottom if you're learning; jump straight to one if you
 need it.
 
 | Script | Model | What you'll learn |
 | --- | --- | --- |
-| `01_linear_regression.py` | Linear, Ridge, Lasso | Reading coefficients, p-values and confidence intervals; checking the assumptions (residuals, constant variance, multicollinearity); cross-validation; when regularisation helps |
-| `02_logistic_regression.py` | Logistic regression | Why accuracy can lie; precision vs recall; choosing a threshold; odds ratios; whether predicted probabilities can be trusted (calibration) |
-| `03_neural_net_from_scratch.py` | Two-layer network in numpy | Forward pass, loss and backpropagation written out by hand; gradient checking; how width causes under- and overfitting; what a bad learning rate looks like |
-| `04_neural_net_keras.py` | Deep network (Keras) | Scaling, dropout, L2, early stopping, learning-rate schedules, reading learning curves, and an honest comparison with linear regression |
-| `05_model_comparison.py` | 10+ regressors | Cross-validated leaderboard with error bars; spotting statistical ties; blending different model families; permutation importance |
-| `06_time_series_xgboost.py` | XGBoost for forecasting | Lag and calendar features without leakage; beating the "same as last season" baseline; walk-forward validation; why trees can't extrapolate a trend and how to fix it |
-| `07_forecast_prophet.py` | Prophet | Trend and seasonality decomposition; true multi-step holdout; checking the uncertainty interval; error by forecast horizon |
+| `linear_regression.py` | Linear, Ridge, Lasso | Reading coefficients, p-values and confidence intervals; checking the assumptions (residuals, constant variance, multicollinearity); cross-validation; when regularisation helps |
+| `logistic_regression.py` | Logistic regression | Why accuracy can lie; precision vs recall; choosing a threshold; odds ratios; whether predicted probabilities can be trusted (calibration) |
+| `neural_net_from_scratch.py` | Two-layer network in numpy | Forward pass, loss and backpropagation written out by hand; gradient checking; how width causes under- and overfitting; what a bad learning rate looks like |
+| `neural_net_keras.py` | Deep network (Keras) | Scaling, dropout, L2, early stopping, learning-rate schedules, reading learning curves, and an honest comparison with linear regression |
+| `model_comparison.py` | 10+ regressors | Cross-validated leaderboard with error bars; spotting statistical ties; blending different model families; permutation importance |
+| `time_series_xgboost.py` | XGBoost for forecasting | Lag and calendar features without leakage; beating the "same as last season" baseline; walk-forward validation; why trees can't extrapolate a trend and how to fix it |
+| `forecast_prophet.py` | Prophet | Trend and seasonality decomposition; true multi-step holdout; checking the uncertainty interval; error by forecast horizon |
 
 Shared code lives in `toolkit/`:
 
@@ -48,10 +48,10 @@ Shared code lives in `toolkit/`:
 ## Using your own data
 
 ```bash
-python 01_linear_regression.py   --csv data/houses.csv --target price
-python 02_logistic_regression.py --csv data/churn.csv  --target churned
-python 05_model_comparison.py    --csv data/houses.csv --target price --log-target
-python 06_time_series_xgboost.py --csv data/sales.csv  --date-column Month --target "Monthly Sales"
+python linear_regression.py   --csv data/houses.csv --target price
+python logistic_regression.py --csv data/churn.csv  --target churned
+python model_comparison.py    --csv data/houses.csv --target price --log-target
+python time_series_xgboost.py --csv data/sales.csv  --date-column Month --target "Monthly Sales"
 ```
 
 Text columns are one-hot encoded and constant columns dropped automatically.
@@ -107,7 +107,8 @@ stops being a fair test.
 ## Requirements
 
 Python 3.10 or newer. `requirements.txt` lists everything; the core
-scripts (01, 02, 03, 05) need only numpy, pandas, scikit-learn, scipy,
+scripts (linear and logistic regression, the numpy neural net and model
+comparison) need only numpy, pandas, scikit-learn, scipy,
 matplotlib and statsmodels. TensorFlow, XGBoost and Prophet are only needed
 for the scripts that use them. LightGBM and CatBoost are optional extras that
-`05_model_comparison.py` picks up automatically if installed.
+`model_comparison.py` picks up automatically if installed.

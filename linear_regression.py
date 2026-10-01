@@ -11,8 +11,8 @@ beat. This script fits it and then asks the questions people usually skip:
   4. Does it hold up across different splits of the data?
   5. Does regularisation (Ridge / Lasso) help?
 
-Run:  python 01_linear_regression.py
-      python 01_linear_regression.py --csv data/houses.csv --target price
+Run:  python linear_regression.py
+      python linear_regression.py --csv data/houses.csv --target price
 """
 
 import numpy as np
@@ -172,7 +172,7 @@ def main() -> None:
     beta, *_ = np.linalg.lstsq(Z, y_train.to_numpy(dtype=float), rcond=None)
     match = np.allclose(beta[1:], model[-1].coef_, atol=1e-6)
     print(f"numpy least-squares coefficients match sklearn: {match}")
-    print("See 03_neural_net_from_scratch.py for the gradient-descent route to the same idea.")
+    print("See neural_net_from_scratch.py for the gradient-descent route to the same idea.")
 
 
 if __name__ == "__main__":
