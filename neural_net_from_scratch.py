@@ -12,7 +12,7 @@ The data is "two moons": two interlocking crescents no straight line can
 separate. Logistic regression (a network with no hidden layer) gets stuck;
 one small hidden layer bends the boundary and solves it.
 
-Run:  python 03_neural_net_from_scratch.py
+Run:  python neural_net_from_scratch.py
 """
 
 import argparse
