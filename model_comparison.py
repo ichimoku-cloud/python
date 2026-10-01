@@ -12,8 +12,8 @@ Two things this teaches that a single train/test split hides:
 
 XGBoost, LightGBM and CatBoost are used if installed and skipped if not.
 
-Run:  python 05_model_comparison.py
-      python 05_model_comparison.py --csv data/houses.csv --target price --log-target
+Run:  python model_comparison.py
+      python model_comparison.py --csv data/houses.csv --target price --log-target
 """
 
 import time

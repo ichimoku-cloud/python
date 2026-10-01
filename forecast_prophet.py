@@ -11,22 +11,22 @@ What this script adds beyond fit-and-plot:
   - the uncertainty interval, and whether reality actually lands inside it
   - the decomposition in plain numbers
 
-With no --csv it uses the same SYNTHETIC monthly sales as 06_time_series_xgboost.py,
+With no --csv it uses the same SYNTHETIC monthly sales as time_series_xgboost.py,
 so you can compare the two approaches directly.
 
-Run:  python 07_forecast_prophet.py
-      python 07_forecast_prophet.py --csv data/revenue.csv --date-column Date --target IAP
+Run:  python forecast_prophet.py
+      python forecast_prophet.py --csv data/revenue.csv --date-column Date --target IAP
 Needs: pip install prophet
 """
 
 import argparse
 import logging
-from importlib import import_module
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+import time_series_xgboost as ts  # reuse its data loader so both forecasts read data the same way
 from toolkit import plots
 from toolkit.evaluate import regression_report
 
@@ -40,8 +40,6 @@ except ImportError:
 
 logging.getLogger("cmdstanpy").disabled = True  # Prophet's optimiser logs every fit
 
-# Reuse the series loader so both forecasting scripts read data the same way.
-ts = import_module("06_time_series_xgboost")
 
 
 def main() -> None:

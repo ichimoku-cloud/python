@@ -12,8 +12,8 @@ well or not:
   - the result is compared with plain linear regression, because on small
     tabular datasets a neural net often doesn't win, and you should know
 
-Run:  python 04_neural_net_keras.py
-      python 04_neural_net_keras.py --csv data/crime.csv --target total_crime_reported_per_1_million_res
+Run:  python neural_net_keras.py
+      python neural_net_keras.py --csv data/crime.csv --target total_crime_reported_per_1_million_res
 """
 
 import os
@@ -137,7 +137,7 @@ def main() -> None:
         print(f"With only {len(y_test)} test rows, confirm with cross-validation before paying for the complexity.")
     elif diff > 0.02 * lin["rmse"]:
         print(f"Linear regression wins by {diff:,.2f} RMSE. Typical for small tabular data: not enough rows to")
-        print("feed a network. Gradient-boosted trees (05_model_comparison.py) are usually the stronger choice here.")
+        print("feed a network. Gradient-boosted trees (model_comparison.py) are usually the stronger choice here.")
     else:
         print("They tie (within 2%). Prefer linear regression: same accuracy, far simpler.")
 

@@ -10,8 +10,8 @@ The deep-dive parts:
   - coefficients become odds ratios, which are easy to explain to anyone
   - we check whether the predicted probabilities can be trusted (calibration)
 
-Run:  python 02_logistic_regression.py
-      python 02_logistic_regression.py --csv data/churn.csv --target churned
+Run:  python logistic_regression.py
+      python logistic_regression.py --csv data/churn.csv --target churned
 """
 
 import matplotlib.pyplot as plt

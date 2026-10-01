@@ -18,8 +18,8 @@ With no --csv the script builds a SYNTHETIC monthly sales series (trend,
 yearly seasonality and noise) so it runs out of the box. Point it at your own
 data for real insight.
 
-Run:  python 06_time_series_xgboost.py
-      python 06_time_series_xgboost.py --csv data/sales.csv --date-column Month --target "Monthly Sales"
+Run:  python time_series_xgboost.py
+      python time_series_xgboost.py --csv data/sales.csv --date-column Month --target "Monthly Sales"
 """
 
 import argparse
