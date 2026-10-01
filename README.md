@@ -2,8 +2,6 @@
 
 This repo collects the models I use most: linear and logistic regression, neural networks, gradient boosting and time-series forecasting. Each one is a script that runs on its own, with comments that explain what's happening and why.
 
-Training a model is the easy part; knowing whether to trust it is harder. So every script also checks whether the model beats a simple guess, which inputs drive it, and whether it's overfitting. It prints the answers in plain English and saves the charts to `outputs/`.
-
 ## Getting started
 
 ```bash
