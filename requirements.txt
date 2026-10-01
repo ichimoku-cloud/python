@@ -1,0 +1,21 @@
+# Core: everything in 01-03 and 05 runs with just these.
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+scipy>=1.10
+matplotlib>=3.7
+statsmodels>=0.14
+
+# 04_neural_net_keras.py
+tensorflow>=2.15
+
+# 05 (optional extra models) and 06
+xgboost>=2.0
+# lightgbm>=4.0
+# catboost>=1.2
+
+# 07_forecast_prophet.py
+prophet>=1.1
+
+# extras/text_to_speech.py
+# pyttsx3>=2.90
